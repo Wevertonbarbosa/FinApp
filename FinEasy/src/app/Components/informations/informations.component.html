@@ -1,0 +1,116 @@
+<ion-grid class="container-fluid gridInfo p-2 d-flex justify-content-center align-items-center flex-column">
+
+  <!-- PRIMEIRO INFORMATIVO -->
+
+  <div class="container-fluid bg-light p-1 shadow d-flex justify-content-center align-items-center flex-column h-100 divInfo1" id="info1">
+
+    <figure class="m-1 w-75">
+      <img src="../../../assets/imgs/celularMoney.png" alt="celular">
+    </figure>
+
+    <div class="container-fluid text-center">
+      <h1 class="fw-bold">Bem-vindo(a)</h1>
+      <p>Controle sua vida financeira, de uma maneira mais fácil</p>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center align-items-center gap-3 p-3">
+      <img src="../../../assets/Icons/BolinhaBlack.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+    </div>
+  </div>
+
+  <div class="container-fluid d-flex justify-content-end links">
+    <a  class="text-decoration-none">
+      <h4 (click)="nextInfo('divInfo1')" class="mt-4">Próximo</h4>
+    </a>
+  </div>
+
+  <!-- SEGUNDO INFORMATIVO -->
+  <div class="container-fluid bg-light p-1 shadow d-flex justify-content-center align-items-center flex-column h-100 divInfo2  ocutando" id="info2">
+
+    <figure class="m-1 w-75">
+      <img src="../../../assets/imgs/RAPIDEZ.png" alt="celular">
+    </figure>
+
+    <div class="container-fluid text-center">
+      <h1 class="fw-bold">Rapidez</h1>
+      <p>Solução perfeita para quem acha que não tem tempo.</p>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center align-items-center gap-3 p-3">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/BolinhaBlack.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+    </div>
+  </div>
+
+  <div class="container-fluid d-flex justify-content-between links2 ocutando">
+    <a>
+      <h4 (click)="lasteInfo('divInfo2')" class="mt-4 text-secondary">Voltar</h4>
+    </a>  
+    <a  class="text-decoration-none">
+      <h4 (click)="nextInfo('divInfo2')" class="mt-4">Próximo</h4>
+    </a>
+  </div>
+  <!-- TERCEIRO INFORMATIVO -->
+  <div class="container-fluid bg-light p-1 shadow d-flex justify-content-center align-items-center flex-column h-100 divInfo3 ocutando" id="info3">
+
+    <figure class="m-1 w-75">
+      <img src="../../../assets/imgs/FACILIDADE.png" alt="celular">
+    </figure>
+
+    <div class="container-fluid text-center">
+      <h1 class="fw-bold">Facilidade</h1>
+      <p> Veja de forma fácil suas finanças, sem complicações ou termos complexos.</p>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center align-items-center gap-3 p-3">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/BolinhaBlack.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+    </div>
+  </div>
+
+  <div class="container-fluid d-flex justify-content-between links3 ocutando">
+    <a>
+      <h4 (click)="lasteInfo('divInfo3')"  class="mt-4 text-secondary">Voltar</h4>
+    </a> 
+    <a  class="text-decoration-none">
+      <h4 (click)="nextInfo('divInfo3')" class="mt-4">Próximo</h4>
+    </a>
+  </div>
+
+  <!-- QUARTO INFORMATIVO -->
+  <div class="container-fluid bg-light p-1 shadow d-flex justify-content-center align-items-center flex-column h-100 divInfo4 ocutando" id="info4">
+
+    <figure class="m-1 w-75">
+      <img src="../../../assets/imgs/METODO.png" alt="celular">
+    </figure>
+
+    <div class="container-fluid text-center">
+      <h1 class="fw-bold">Método 70/30</h1>
+      <p> O método 70/30 ajuda a controlar as finanças e ainda guardar dinheiro.</p>
+    </div>
+
+    <div class="container-fluid d-flex justify-content-center align-items-center gap-3 p-3">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/Ellipse.png" alt="bolinhas">
+      <img src="../../../assets/Icons/BolinhaBlack.png" alt="bolinhas">
+    </div>
+  </div>
+
+  <div class="container-fluid d-flex justify-content-between links4 ocutando">
+    <a>
+      <h4 (click)="lasteInfo('divInfo4')"  class="mt-4 text-secondary">Voltar</h4>
+    </a> 
+    <a  class="text-decoration-none">
+      <h4 (click)="nextInfo('divInfo4')" class="mt-4">Próximo</h4>
+    </a>
+  </div>
+
+</ion-grid>
