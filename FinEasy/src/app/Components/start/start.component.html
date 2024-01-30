@@ -1,0 +1,76 @@
+<ion-content>
+  <div class="container-fluid h-100 divMainStart p-0">
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+      <figure>
+        <img src="../../../assets/Icons/OnlyLogo__1_-removebg-preview 1.png" alt="logo">
+      </figure>
+    </div>
+
+    <div class="container-fluid d-flex align-items-center justify-content-center flex-column pb-2">
+      <h2 class="text-light fw-bold text-center">Tem gastado muito?</h2>
+      <p class="text-center text-light">
+        Chegou a hora! <br>
+        Vamos preencher todos os seus gastos mensalmente.
+      </p>
+    </div>
+
+    <div class="d-grid gap-2 col-10 mx-auto">
+      <button class="btn btn-primary p-2" type="button">
+        <h3 class="m-0">Começar</h3>
+      </button>
+    </div>
+
+    <div class="container-fluid">
+      <p class="text-center text-light mt-4 mb-0 "><b>Domine e não seja dominado!</b></p>
+      <p class="text-center text-light">Controle suas finanças e tenha mais felicidade</p>
+    </div>
+
+    <ion-accordion-group expand="inset">
+      <ion-accordion value="first">
+        <ion-item (click)="setOpen(true)" slot="header" color="primary">
+          <ion-label><b>Benefícios</b></ion-label>
+        </ion-item>
+
+        <ion-modal [isOpen]="isModalOpen">
+          <ng-template>
+            <ion-header>
+              <ion-toolbar>
+                <h3 class="ps-1 text-dark"><b>Benefícios</b></h3>
+                <ion-buttons slot="end">
+                  <ion-button (click)="setOpen(false)">
+                    <h3 class="m-0"><b>X</b></h3>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+              <p class="text-center m-1"> <b>Benefícios do controle financeiro</b></p>
+              <p>1 - Saber exatamente quanto se gasta mensalmente permite um controle mais eficaz das finanças,
+                possibilitando ajustes e economias conforme necessário.
+              </p>
+              <p>
+                2 - O conhecimento detalhado dos gastos facilita o planejamento estratégico, permitindo estabelecer
+                metas financeiras
+              </p>
+              <p>
+                3 - A consciência dos gastos contribui para a construção de uma reserva financeira
+              </p>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+
+
+
+
+      </ion-accordion>
+
+
+
+
+
+    </ion-accordion-group>
+
+
+
+  </div>
+</ion-content>

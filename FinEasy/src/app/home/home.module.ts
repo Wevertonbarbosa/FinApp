@@ -6,18 +6,22 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 import { InformationsComponent } from '../Components/informations/informations.component';
-
-
-
-
+import { ChooseComponent } from '../Components/choose/choose.component';
+import { SimulationComponent } from '../Components/simulation/simulation.component';
+import { MenuComponent } from '../Components/menu/menu.component';
+import { MethodComponent } from '../Components/method/method.component';
+import { StartComponent } from '../Components/start/start.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HomePageRoutingModule,
+  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule],
+  declarations: [
+    HomePage,
+    InformationsComponent,
+    ChooseComponent,
+    SimulationComponent,
+    MenuComponent,
+    MethodComponent,
+    StartComponent
   ],
-  declarations: [HomePage, InformationsComponent]
 })
 export class HomePageModule {}

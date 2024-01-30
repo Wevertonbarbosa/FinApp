@@ -1,0 +1,44 @@
+<ion-content>
+  <ion-grid class="container-fluid  flex-column h-100">
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+      <figure>
+        <img src="../../../assets/Icons/logoOnly.png" alt="logo">
+      </figure>
+    </div>
+
+    <div class="container-fluid d-flex flex-column gap-4 align-items-center justify-content-center py-5">
+
+      <h2 class="text-light fw-bold">Faça sua escolha</h2>
+
+      <div class="d-grid gap-2 col-11 mx-auto">
+        <button class="btn btn-primary p-2" id="open-modal" type="button">
+          <h3 class="m-0">Escolha</h3>
+        </button>
+      </div>
+    </div>
+
+    <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+      <ng-template>
+        <div class="block p-3">
+          <h2 class="text-center fw-bold m-2">Pergunta</h2>
+
+          <p class="mb-1 text-center fw-bolder">Conhece o método 70/30?</p>
+          <p class="text-center m-0"> deseja fazer a simulação na planilha, aperte em <b>“Simulação”</b></p>
+
+          <p class="mb-1 text-center fw-bolder">Não conheçe?</p>
+          <p class="text-center m-0">Não tem problema, selecione a opção <b>“Conhecer”</b></p>
+          <div class="container-fluid d-flex align-items-center justify-content-between">
+            <a href="choose">
+              <h3>Conhecer</h3>
+            </a>
+            <a href="simulation">
+              <h3>Simulação</h3>
+            </a>
+          </div>
+        </div>
+      </ng-template>
+    </ion-modal>
+
+  </ion-grid>
+
+</ion-content>

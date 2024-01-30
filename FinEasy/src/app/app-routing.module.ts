@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { InformationsComponent } from './Components/informations/informations.component';
+import { ChooseComponent } from './Components/choose/choose.component';
+import { SimulationComponent } from './Components/simulation/simulation.component';
+import { MethodComponent } from './Components/method/method.component';
+import { StartComponent } from './Components/start/start.component';
 
 const routes: Routes = [
   {
@@ -15,6 +19,22 @@ const routes: Routes = [
   {
     path: 'information',
     component: InformationsComponent
+  },
+  {
+    path: 'choose',
+    component: ChooseComponent
+  },
+  {
+    path: 'simulation',
+    component: SimulationComponent
+  },
+  {
+    path: 'method',
+    component: MethodComponent
+  },
+  {
+    path: 'start',
+    component: StartComponent
   }
 ];
 
