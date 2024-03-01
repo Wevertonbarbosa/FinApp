@@ -1,7 +1,21 @@
-ion-title, h2, h3, p, ion-input, ion-label {
-  font-family: 'Poppins', sans-serif;
+ion-title,
+h2,
+h3,
+p,
+span,
+ion-input,
+ion-label {
+  font-family: "Poppins", sans-serif;
 }
 
-.ocutando{
+.ocutando {
   display: none;
+}
+
+.erro_txt {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  color: #ed6a6a;
 }

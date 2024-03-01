@@ -5,6 +5,7 @@ import { ChooseComponent } from './Components/choose/choose.component';
 import { SimulationComponent } from './Components/simulation/simulation.component';
 import { MethodComponent } from './Components/method/method.component';
 import { StartComponent } from './Components/start/start.component';
+import { CompleteComponent } from './Components/complete/complete.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'start',
     component: StartComponent
+  },
+  {
+    path: 'complete',
+    component: CompleteComponent
   }
 ];
 

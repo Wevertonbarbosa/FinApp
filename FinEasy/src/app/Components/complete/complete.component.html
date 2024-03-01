@@ -1,0 +1,236 @@
+<ion-content class="ion-padding">
+  <app-menu></app-menu>
+
+  <!-- TERCEIRA SIMULAÇÃO -->
+  <div class="divSimulation3" id="simu3">
+    <div class="container-fluid pt-4">
+      <h2 class="text-center fw-bold mt-4">Saídas</h2>
+      <h3 class="text-center m-0 fw-bolder">Despesas essenciais</h3>
+      <p class="text-center text-secondary">(Presente)</p>
+    </div>
+
+    <div class="container-fluid p-0 py-4 d-flex align-items-center justify-content-center flex-column">
+
+      <ion-list>
+        <ion-item>
+          <ion-input label="Nome:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Valor:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="d-grid gap-2 col-10 mx-auto position-relative">
+        <button class="btn btn-primary p-2" type="button">
+          <h3 class="m-0">Confirmar</h3>
+        </button>
+      </div>
+
+      <div class="container-fluid d-flex align-items-center mt-4 justify-content-end p-0 position-relative">
+        <figure>
+          <img (click)="next('divSimulation3')" src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
+        </figure>
+      </div>
+
+      <div class="container-fluid my-3 mb-3">
+        <h3 class="m-0 text-start">Lista de saídas</h3>
+      </div>
+      <ion-list class="w-100">
+        <ion-reorder-group [disabled]="false">
+          <ion-item>
+            <ion-label> Investimento </ion-label>
+            <ion-reorder slot="end">
+              <ion-icon name="eye-sharp"></ion-icon>
+            </ion-reorder>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Item 2 </ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+
+    </div>
+  </div>
+
+  <!-- QUARTA SIMULAÇÃO -->
+  <div class="divSimulation4 ocutando" id="simu4">
+
+    <div class="container-fluid pt-4">
+      <h2 class="text-start fw-bold mt-4">Educação</h2>
+      <p class="text-center">Você tem investido em seus conhecimentos?</p>
+    </div>
+
+
+    <div class="container-fluid p-0 py-4 d-flex align-items-center  justify-content-center flex-column">
+
+      <ion-list>
+        <ion-item>
+          <ion-input label="Nome:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Valor:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="d-grid gap-2 col-10 mx-auto position-relative">
+        <button class="btn btn-primary p-2" type="button">
+          <h3 class="m-0">Confirmar</h3>
+        </button>
+      </div>
+
+      <div class="container-fluid d-flex align-items-center mt-4 p-0 justify-content-between position-relative">
+        <figure>
+          <img (click)="last('divSimulation4')" src="./../../../assets/Icons/Back.png" alt="BtnBack">
+        </figure>
+        
+        <figure>
+          <img (click)="next('divSimulation4')" src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
+        </figure>
+      </div>
+
+
+      <div class="container-fluid my-3 mb-3">
+        <h3 class="m-0 text-start">Lista de saídas</h3>
+      </div>
+      <ion-list class="w-100">
+        <ion-reorder-group [disabled]="false">
+          <ion-item>
+            <ion-label> Investimento </ion-label>
+            <ion-reorder slot="end">
+              <ion-icon name="eye-sharp"></ion-icon>
+            </ion-reorder>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Item 2 </ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+
+    </div>
+  </div>
+
+  <!-- QUINTA SIMULAÇÃO -->
+  <div class="divSimulation5 ocutando" id="simu5">
+    <div class="container-fluid pt-4">
+      <h2 class="text-center fw-bold mt-4">Investimentos</h2>
+      <h3 class="text-center m-0 fw-bolder">Poupar/Investir</h3>
+      <p class="text-center text-secondary">(Futuro)</p>
+    </div>
+
+    <div class="container-fluid p-0 py-4 d-flex align-items-center justify-content-center flex-column">
+
+      <ion-list>
+        <ion-item>
+          <ion-input label="Nome:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Valor:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="d-grid gap-2 col-10 mx-auto position-relative">
+        <button class="btn btn-primary p-2" type="button">
+          <h3 class="m-0">Confirmar</h3>
+        </button>
+      </div>
+
+      <div class="container-fluid d-flex align-items-center p-0 mt-4 justify-content-between position-relative">
+        <figure>
+          <img (click)="last('divSimulation5')" src="./../../../assets/Icons/Back.png" alt="BtnBack">
+        </figure>
+       
+        <figure>
+          <img (click)="next('divSimulation5')" src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
+        </figure>
+      </div>
+
+      <div class="container-fluid my-3 mb-3">
+        <h3 class="m-0 text-start">Lista de saídas</h3>
+      </div>
+      <ion-list class="w-100">
+        <ion-reorder-group [disabled]="false">
+          <ion-item>
+            <ion-label> Investimento </ion-label>
+            <ion-reorder slot="end">
+              <ion-icon name="eye-sharp"></ion-icon>
+            </ion-reorder>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Item 2 </ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+
+    </div>
+  </div>
+
+  <!-- SEXTA SIMULAÇÃO -->
+  <div class="divSimulation6 ocutando" id="simu6">
+
+    <div class="container-fluid pt-4">
+      <h2 class="text-start fw-bold mt-4">Gastos pessoais</h2>
+      <p class="text-center">Você também tem direito de pensar e em gastar com você </p>
+    </div>
+
+
+    <div class="container-fluid p-0 py-4 d-flex align-items-center justify-content-center flex-column">
+
+      <ion-list>
+        <ion-item>
+          <ion-input label="Nome:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Valor:" placeholder="R$:1.500,00"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <div class="d-grid gap-2 col-10 mx-auto position-relative">
+        <button class="btn btn-primary p-2" type="button">
+          <h3 class="m-0">Confirmar</h3>
+        </button>
+      </div>
+
+      <div class="container-fluid d-flex align-items-center p-0 mt-4 justify-content-between position-relative">
+        
+        <figure>
+          <img (click)="last('divSimulation6')" src="./../../../assets/Icons/Back.png" alt="BtnBack">
+        </figure>
+        
+        <figure>
+          <img src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
+        </figure>
+      </div>
+
+
+      <div class="container-fluid my-3 mb-3">
+        <h3 class="m-0 text-start">Lista de saídas</h3>
+      </div>
+      <ion-list class="w-100">
+        <ion-reorder-group [disabled]="false">
+          <ion-item>
+            <ion-label> Investimento </ion-label>
+            <ion-reorder slot="end">
+              <ion-icon name="eye-sharp"></ion-icon>
+            </ion-reorder>
+          </ion-item>
+
+          <ion-item>
+            <ion-label> Item 2 </ion-label>
+            <ion-reorder slot="end"></ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+
+    </div>
+  </div>
+
+
+
+
+</ion-content>

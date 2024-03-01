@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-method',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MethodComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
+
+
+  nextPage(){
+    this.router.navigateByUrl('start')
+  }
 
 }
