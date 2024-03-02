@@ -3,7 +3,7 @@
     <img src="./../../../assets/Icons/OnlyLogo__1_-removebg-preview 1.png" alt="BtnSend">
   </div>
   <div class="container-fluid pt-1 px-0">
-    <h2 class="text-center fw-bold">[Nome do Usuário]</h2>
+    <h2 class="text-center fw-bold m-1">{{this.valueName}}</h2>
     <p class="text-center">
       Com base no seus ganhos mensais vamos aplicar o método 70/30 para você ter uma noção do quanto você deve gastar
       mensalmente.
@@ -11,19 +11,16 @@
   </div>
 
   <ion-list class="w-100">
-    <ion-reorder-group [disabled]="false">
-      <ion-item>
-        <ion-label> Renda mensal </ion-label>
-        <ion-label> R$: 4.000 </ion-label>
-        <ion-reorder slot="end">
-          <ion-icon name="eye-sharp"></ion-icon>
-        </ion-reorder>
-      </ion-item>
-    </ion-reorder-group>
+
+    <ion-item>
+      <ion-label class="text-start"> Renda mensal </ion-label>
+      <ion-label class="text-start"> {{"R$: "+ this.valueTotalEnter}} </ion-label>
+    </ion-item>
+
   </ion-list>
 
   <div class="container-fluid">
-    <h3 class="text-start fw-bold">Método 70/30</h3>
+    <h3 class="text-center fw-bold">Método 70/30</h3>
   </div>
 
   <ion-card color="primary">
@@ -32,7 +29,7 @@
     <ion-list class="w-100 p-0">
       <ion-item>
         <ion-label> 30% </ion-label>
-        <ion-label class="text-end"> R$: 1.200 </ion-label>
+        <ion-label class="text-end">{{"R$: " + this.divisao[0].future}}</ion-label>
       </ion-item>
     </ion-list>
 
@@ -41,7 +38,7 @@
     <ion-list class="w-100 p-0">
       <ion-item>
         <ion-label> 55% </ion-label>
-        <ion-label class="text-end"> R$: 2.200 </ion-label>
+        <ion-label class="text-end">{{"R$: " + this.divisao[0].present}}</ion-label>
       </ion-item>
     </ion-list>
 
@@ -51,7 +48,7 @@
     <ion-list class="w-100 p-0">
       <ion-item>
         <ion-label> 10% </ion-label>
-        <ion-label class="text-end"> R$: 400</ion-label>
+        <ion-label class="text-end">{{"R$: " + this.divisao[0].extras}}</ion-label>
       </ion-item>
     </ion-list>
 
@@ -60,14 +57,20 @@
     <ion-list class="w-100 p-0">
       <ion-item>
         <ion-label> 5% </ion-label>
-        <ion-label class="text-end"> R$: 200</ion-label>
+        <ion-label class="text-end">{{"R$: " + this.divisao[0].education}}</ion-label>
       </ion-item>
     </ion-list>
   </ion-card>
 
   <div class="container-fluid d-flex align-items-center justify-content-end">
-    <figure>
-      <a (click)="nextPage()"><img src="./../../../assets/Icons/Nextpage.png" alt="BtnSend"></a>
-    </figure>
+    <ion-row>
+      <ion-col>
+        <div class="container-fluid d-flex align-items-center justify-content-end position-relative">
+          <button (click)="nextPage()" class="bg-transparent d-flex align-items-center">
+            <ion-icon class="fs-1" name="arrow-forward"></ion-icon>
+          </button>
+        </div>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>

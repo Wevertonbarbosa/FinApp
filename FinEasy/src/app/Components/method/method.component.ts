@@ -6,15 +6,29 @@ import { Router } from '@angular/router';
   templateUrl: './method.component.html',
   styleUrls: ['./method.component.scss'],
 })
-export class MethodComponent  implements OnInit {
+export class MethodComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
+  public valueName: string = '';
+  public valueTotalEnter: string = '';
+  public divisao: any = [];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.valueName = sessionStorage.getItem('Usuário') || ' ';
+    this.valueTotalEnter = sessionStorage.getItem('entradas') || ' ';
+    console.log(parseFloat(this.valueTotalEnter) * 0.3);
 
-
-  nextPage(){
-    this.router.navigateByUrl('start')
+    this.divisao = [
+      {
+        future: (parseFloat(this.valueTotalEnter) * 0.3).toFixed(2),
+        present: (parseFloat(this.valueTotalEnter) * 0.55).toFixed(2),
+        education: (parseFloat(this.valueTotalEnter) * 0.05).toFixed(2),
+        extras: (parseFloat(this.valueTotalEnter) * 0.1).toFixed(2),
+      },
+    ];
   }
 
+  nextPage() {
+    this.router.navigateByUrl('start');
+  }
 }

@@ -9,50 +9,106 @@
       <p class="text-center text-secondary">(Presente)</p>
     </div>
 
-    <div class="container-fluid p-0 py-4 d-flex align-items-center justify-content-center flex-column">
+    <form #d="ngForm" (ngSubmit)="despesas(d)">
 
-      <ion-list>
-        <ion-item>
-          <ion-input label="Nome:" placeholder="R$:1.500,00"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Valor:" placeholder="R$:1.500,00"></ion-input>
-        </ion-item>
-      </ion-list>
+      <div class="container-fluid p-0 py-4 d-flex align-items-center justify-content-center flex-column">
 
-      <div class="d-grid gap-2 col-10 mx-auto position-relative">
-        <button class="btn btn-primary p-2" type="button">
-          <h3 class="m-0">Confirmar</h3>
-        </button>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text border-0 border-2 border-bottom">Nome</span>
+          <input #customInput name="nome" (input)="formatarEntrada(customInput)" label="Nome:" placeholder="Aluguel"
+            (keydown)="checkInput($event)" minlength="2" [(ngModel)]="nome"
+            class="form-control border-0 border-2 border-bottom" required>
+
+          <ion-row>
+            <ion-col *ngIf="(d.controls['nome']?.invalid && d.controls['nome']?.touched)
+              || d.controls['nome']?.dirty" class="p-0 text-start">
+
+              <span class="erro_txt" *ngIf="d.controls['nome']?.errors?.['required']">
+                Campo nome precisa ser preenchido!
+              </span>
+
+              <span class="erro_txt" *ngIf="d.controls['nome']?.errors?.['minlength']">
+                Nome precisa no mínimo de 2 caracteres!
+              </span>
+
+            </ion-col>
+
+          </ion-row>
+
+        </div>
+
+
+        <div class="input-group mb-3">
+          <span class="input-group-text border-0 border-2 border-bottom">Valor</span>
+          <input type="tel" mask="separator.2" thousandSeparator="." [(ngModel)]="valor" name="valor"
+            (keydown)="checkValueInput($event)" class="form-control border-0 border-2 border-bottom" required
+            placeholder="1.500,00">
+
+
+          <ion-row>
+            <ion-col *ngIf="(d.controls['valor']?.invalid && d.controls['valor']?.touched)
+              || d.controls['valor']?.dirty" class="p-0 text-start">
+
+              <span class="erro_txt" *ngIf="d.controls['valor']?.errors?.['required']">
+                Campo valor precisa ser preenchido!
+              </span>
+
+            </ion-col>
+
+          </ion-row>
+
+        </div>
+
+
+        <div class="d-grid gap-2 col-10 mx-auto position-relative">
+          
+          <button [disabled]="(d.controls['valor'] && d.controls['valor'].invalid)"
+          [disabled]="(d.controls['valor'] && d.controls['valor'].invalid)" class="btn btn-primary p-2" type="button">
+            <h3 class="m-0">Confirmar</h3>
+          </button>
+        
+        
+        </div>
+
+        <div class="container-fluid d-flex align-items-center mt-2 justify-content-end p-0 position-relative">
+          <ion-row>
+            <ion-col>
+              <div class="container-fluid d-flex align-items-center justify-content-end position-relative">
+                <button (click)="next('divSimulation3')" class="bg-transparent d-flex align-items-center">
+                  <span class="pe-2">Próximo</span>
+                  <ion-icon class="fs-1" name="arrow-forward"></ion-icon>
+                </button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </div>
+
       </div>
+    </form>
 
-      <div class="container-fluid d-flex align-items-center mt-4 justify-content-end p-0 position-relative">
-        <figure>
-          <img (click)="next('divSimulation3')" src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
-        </figure>
-      </div>
 
-      <div class="container-fluid my-3 mb-3">
-        <h3 class="m-0 text-start">Lista de saídas</h3>
-      </div>
-      <ion-list class="w-100">
-        <ion-reorder-group [disabled]="false">
-          <ion-item>
-            <ion-label> Investimento </ion-label>
-            <ion-reorder slot="end">
-              <ion-icon name="eye-sharp"></ion-icon>
-            </ion-reorder>
-          </ion-item>
-
-          <ion-item>
-            <ion-label> Item 2 </ion-label>
-            <ion-reorder slot="end"></ion-reorder>
-          </ion-item>
-        </ion-reorder-group>
-      </ion-list>
-
+    <div class="container-fluid my-3 mb-3">
+      <h3 class="m-0 text-start">Lista de saídas</h3>
     </div>
+    <ion-list class="w-100">
+      <ion-reorder-group [disabled]="false">
+        <ion-item>
+          <ion-label> Investimento </ion-label>
+          <ion-reorder slot="end">
+            <ion-icon name="eye-sharp"></ion-icon>
+          </ion-reorder>
+        </ion-item>
+
+        <ion-item>
+          <ion-label> Item 2 </ion-label>
+          <ion-reorder slot="end"></ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+
   </div>
+
 
   <!-- QUARTA SIMULAÇÃO -->
   <div class="divSimulation4 ocutando" id="simu4">
@@ -84,7 +140,7 @@
         <figure>
           <img (click)="last('divSimulation4')" src="./../../../assets/Icons/Back.png" alt="BtnBack">
         </figure>
-        
+
         <figure>
           <img (click)="next('divSimulation4')" src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
         </figure>
@@ -142,7 +198,7 @@
         <figure>
           <img (click)="last('divSimulation5')" src="./../../../assets/Icons/Back.png" alt="BtnBack">
         </figure>
-       
+
         <figure>
           <img (click)="next('divSimulation5')" src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
         </figure>
@@ -197,11 +253,11 @@
       </div>
 
       <div class="container-fluid d-flex align-items-center p-0 mt-4 justify-content-between position-relative">
-        
+
         <figure>
           <img (click)="last('divSimulation6')" src="./../../../assets/Icons/Back.png" alt="BtnBack">
         </figure>
-        
+
         <figure>
           <img src="./../../../assets/Icons/Nextpage.png" alt="BtnSend">
         </figure>

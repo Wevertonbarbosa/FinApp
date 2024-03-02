@@ -17,9 +17,10 @@
 
             <ion-col class="p-0">
 
-              <ion-input class="p-0 border-bottom" id="custom-input" name="nome" placeholder="Ex: João"
-                label="Primeiro Nome:" (keydown)="checkInput($event)" [(ngModel)]="firstName" labelPlacement="floating"   
-                minlength="2" required maxlength="15">
+              <ion-input #customInput class="p-0 border-bottom" id="custom-input" name="nome" placeholder="Ex: João"
+                label="Primeiro Nome:" (input)="formatarEntrada(customInput)"
+                (keydown)="checkInput($event)" [(ngModel)]="firstName"
+                labelPlacement="floating" minlength="2" required maxlength="15">
               </ion-input>
 
             </ion-col>
@@ -45,8 +46,9 @@
           <ion-row>
             <ion-col>
               <div class="container-fluid d-flex align-items-center justify-content-end position-relative">
-                <button class="bg-transparent" (click)="nextPage('divSimulation1')"
+                <button class="bg-transparent d-flex align-items-center" (click)="nextPage('divSimulation1')"
                   [disabled]="f.controls['nome'] && f.controls['nome'].invalid">
+                  <span class="pe-2" *ngIf="f.controls['nome'] && f.controls['nome']">Próximo</span>
                   <ion-icon class="fs-1" name="arrow-forward"></ion-icon>
                 </button>
               </div>
@@ -83,7 +85,7 @@
 
 
         <div class="input-group mb-3">
-          <span class="input-group-text border-0 border-2 border-bottom  bg-light">Salário</span>
+          <span class="input-group-text border-0 border-2 border-bottom">Salário</span>
           <input type="tel"  mask="separator.2" thousandSeparator="." [(ngModel)]="salario" name="salario" (keydown)="checkValueInput($event)"
             class="form-control border-0 border-2 border-bottom" required placeholder="1.500,00">
 
@@ -102,7 +104,7 @@
 
 
         <div class="input-group mb-3">
-          <span class="input-group-text border-0 border-2 border-bottom bg-light">Outras rendas</span>
+          <span class="input-group-text border-0 border-2 border-bottom">Outras rendas</span>
           <input type="tel"  mask="separator.2" thousandSeparator="." 
           [(ngModel)]="extra" name="extra"
           class="form-control border-0 border-2 border-bottom"
@@ -112,8 +114,9 @@
 
 
         <div class="d-grid gap-2 col-10 mx-auto position-relative">
-          <button class="btn btn-primary p-2" type="button">
-            <h3 class="m-0" (click)="teste()">Confirmar</h3>
+          <button [disabled]="e.controls['salario'] && e.controls['salario'].invalid"
+           class="btn btn-primary p-2" type="button">
+            <h3 class="m-0" (click)="countEnter()">Confirmar</h3>
           </button>
         </div>
 
