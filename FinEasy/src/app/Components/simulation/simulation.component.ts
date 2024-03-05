@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ItemReorderEventDetail } from '@ionic/angular';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-simulation',
@@ -41,8 +42,10 @@ export class SimulationComponent implements OnInit {
   entradas(form: NgForm) {}
 
   countEnter() {
+    
     this.valueTotal = this.salario + this.extra;
-    sessionStorage.setItem('entradas', this.valueTotal);
+    const valorCriptografado = CryptoJS.AES.encrypt(this.valueTotal.toString(), 'seguranca').toString();
+    sessionStorage.setItem('entradas', valorCriptografado);
     this.router.navigateByUrl('method');
   }
 
