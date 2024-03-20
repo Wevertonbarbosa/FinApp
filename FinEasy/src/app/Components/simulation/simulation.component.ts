@@ -67,7 +67,7 @@ export class SimulationComponent implements OnInit {
     const cursorPosition = inputElement.selectionStart;
 
     // Verificar se o caractere digitado não é uma letra
-    if (!/[a-zA-Z\s]/.test(event.key)) {
+    if (!/[a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]/.test(event.key)) {
       event.preventDefault();
       return;
     }

@@ -17,12 +17,8 @@ import { SimulationComponent } from '../Components/simulation/simulation.compone
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 
-
-
-
-
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [CommonModule, FormsModule, IonicModule, HomePageRoutingModule, NgxMaskDirective, NgxMaskPipe ],
   declarations: [
     HomePage,
     InformationsComponent,

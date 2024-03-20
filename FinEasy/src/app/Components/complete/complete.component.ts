@@ -97,7 +97,7 @@ export class CompleteComponent implements OnInit {
     const cursorPosition = inputElement.selectionStart;
 
     // Verificar se o caractere digitado não é uma letra
-    if (!/[a-zA-Z\s]/.test(event.key)) {
+    if (!/[a-zA-Z\sáàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ]/.test(event.key)) {
       event.preventDefault();
       return;
     }
@@ -112,19 +112,9 @@ export class CompleteComponent implements OnInit {
 
   despesas(form: NgForm){
     if(form.valid){
-      
+      console.log("VEMMMM");
     }
   }
-
-
-
-
-
-
-
-
-
-
 
 
 }
