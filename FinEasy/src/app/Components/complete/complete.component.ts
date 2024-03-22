@@ -1,6 +1,15 @@
-import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ElementRef,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import * as CryptoJS from 'crypto-js';
+import { ActionSheetController, IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
   selector: 'app-complete',
@@ -9,12 +18,43 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
   providers: [provideNgxMask()],
 })
 export class CompleteComponent implements OnInit {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(private el: ElementRef, private renderer: Renderer2, private actionSheetCtrl: ActionSheetController) {}
 
   ngOnInit() {}
 
-  public valor: string = '';
   public nome: string = '';
+  public valor: string = '';
+  public inputCheck: boolean = false;
+  public saidas: any[] = [];
+  
+  isModalOpen = false;
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
+
+  canDismiss = async () => {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Você tem certeza?',
+      buttons: [
+        {
+          text: 'Sim',
+          role: 'confirm',
+        },
+        {
+          text: 'Não',
+          role: 'cancel',
+        },
+      ],
+    });
+
+    actionSheet.present();
+
+    const { role } = await actionSheet.onWillDismiss();
+
+    return role === 'confirm';
+  };  
+
 
   next(classe: string) {
     const elementos = this.el.nativeElement.querySelectorAll(`.${classe}`);
@@ -88,7 +128,6 @@ export class CompleteComponent implements OnInit {
 
     elementoInput.value = valor;
   }
- 
 
   //NÃO PERMITI QUE O PRIMEIRO CARACTER SEJA UM ESPAÇO NO INPUT
   checkInput(event: KeyboardEvent) {
@@ -109,12 +148,18 @@ export class CompleteComponent implements OnInit {
     }
   }
 
-
-  despesas(form: NgForm){
-    if(form.valid){
-      console.log("VEMMMM");
+  despesas(form: NgForm) {
+    if (form.valid) {
+      this.saidas.push({ nome: this.nome, valor: this.valor });
+      this.inputCheck = true;
+      this.nome = '';
+      this.valor = '';
+      console.log(this.saidas);
     }
   }
 
-
+  update(id: number) {
+    console.log(id);
+    console.log(this.saidas[id]);
+  }
 }

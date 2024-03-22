@@ -24,7 +24,7 @@
             <ion-col *ngIf="(d.controls['nome']?.invalid && d.controls['nome']?.touched)
               || d.controls['nome']?.dirty" class="p-0 text-start">
 
-              <span class="erro_txt" *ngIf="d.controls['nome']?.errors?.['required']">
+              <span class="erro_txt" *ngIf="d.controls['nome']?.errors?.['required'] && !inputCheck">
                 Campo nome precisa ser preenchido!
               </span>
 
@@ -49,7 +49,7 @@
             <ion-col *ngIf="(d.controls['valor']?.invalid && d.controls['valor']?.touched)
               || d.controls['valor']?.dirty" class="p-0 text-start">
 
-              <span class="erro_txt" *ngIf="d.controls['valor']?.errors?.['required']">
+              <span class="erro_txt" *ngIf="d.controls['valor']?.errors?.['required'] && !inputCheck">
                 Campo valor precisa ser preenchido!
               </span>
 
@@ -65,6 +65,7 @@
           </button>
         </div>
       </div>
+
     </form>
 
     <div class="container-fluid d-flex align-items-center justify-content-end p-0 position-relative">
@@ -85,24 +86,75 @@
       <h3 class="m-0 text-start">Lista de saídas</h3>
     </div>
 
-    <ion-card class="m-0">
-      <ion-grid>
-        <ion-row>
+    <div *ngIf="saidas.length !== 0">
+      <ion-card *ngFor="let dados of saidas; index as id" class="mb-2 text-dark fw-normal">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" size-md="4" size-lg="2" class="d-flex flex-column fs-6">
+              <ion-label>{{dados.nome}}</ion-label>
+              <ion-label>{{dados.valor}}</ion-label>
+            </ion-col>
+            <ion-col size="6" size-md="4" size-lg="2" class="d-flex justify-content-end gap-2 align-items-center fs-1">
 
-          <ion-col size="6" size-md="4" size-lg="2" class="d-flex flex-column fs-6">
-            <ion-label>Aluguel</ion-label>
-            <ion-label>5.000,90</ion-label>
+              <ion-icon class="text-success" [id]="id" name="create-outline"></ion-icon>
+              <!-- Modal de update -->
+              <ion-modal #modal [trigger]="id" [canDismiss]="canDismiss">
+                <ng-template>
+                  <ion-header>
+                    <ion-toolbar>
+                      <ion-buttons slot="start">
+                        <ion-button (click)="modal.dismiss(null, 'cancel')">Close</ion-button>
+                      </ion-buttons>
+                      <ion-buttons slot="end">
+                        <ion-button (click)="modal.dismiss()">Confirmar</ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-header>
+                  <ion-content class="ion-padding">
 
-          </ion-col>
-          <ion-col size="6" size-md="4" size-lg="2" class="d-flex justify-content-end gap-2 align-items-center fs-1">
+                    <div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text border-0 border-2 border-bottom">Nome</span>
+                        <input #customInput name="nome" (input)="formatarEntrada(customInput)" label="Nome:"
+                          placeholder="Aluguel" (keydown)="checkInput($event)" minlength="2" [(ngModel)]="dados.nome"
+                          class="form-control border-0 border-2 border-bottom w-75" required>
+                      </div>
 
-            <ion-icon name="create-outline"></ion-icon>
-            <ion-icon name="trash-outline"></ion-icon>
-          </ion-col>
-        </ion-row>
 
-      </ion-grid>
-    </ion-card>
+                      <div class="input-group mb-3">
+
+                        <span class="input-group-text border-0 border-2 border-bottom">Valor</span>
+                        <input type="tel" mask="separator.2" thousandSeparator="." [(ngModel)]="dados.valor" name="valor"
+                          (keydown)="checkValueInput($event)" class="form-control border-0 border-2 border-bottom  w-75"
+                          required placeholder="1.500,00">
+
+                      </div>
+
+
+
+                    </div>
+
+
+
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+
+
+              <ion-icon class="text-danger" name="trash-outline"></ion-icon>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </ion-card>
+    </div>
+
+    <div *ngIf="saidas.length === 0" class="text-secondary text-center">
+      <ion-label>Lista de saídas: vazia </ion-label>
+    </div>
+
+
+
   </div>
 
 
