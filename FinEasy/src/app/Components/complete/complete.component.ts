@@ -8,7 +8,11 @@ import {
 import { NgForm } from '@angular/forms';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import * as CryptoJS from 'crypto-js';
-import { ActionSheetController, IonModal } from '@ionic/angular';
+import {
+  ActionSheetController,
+  IonModal,
+  ModalController,
+} from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 
 @Component({
@@ -18,43 +22,49 @@ import { OverlayEventDetail } from '@ionic/core/components';
   providers: [provideNgxMask()],
 })
 export class CompleteComponent implements OnInit {
-  constructor(private el: ElementRef, private renderer: Renderer2, private actionSheetCtrl: ActionSheetController) {}
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private actionSheetCtrl: ActionSheetController
+  ) {}
 
   ngOnInit() {}
 
-  public nome: string = '';
-  public valor: string = '';
+  public nome: string;
+  public valor: string;
   public inputCheck: boolean = false;
-  public saidas: any[] = [];
-  
-  isModalOpen = false;
+  public inputVazio: boolean = false;
 
-  setOpen(isOpen: boolean) {
-    this.isModalOpen = isOpen;
+  public dados: any = [];
+  public saidas: any[] = [];
+  public dadosOriginal: any = {};
+
+  public inputNomeUpdateVazio: boolean = false;
+  public inputNomeUpdateMin: boolean = false;
+  public inputValorUpdateVazio: boolean = false;
+
+  formatarInput() {
+    this.valor = this.formatarMoeda(this.valor);
   }
 
-  canDismiss = async () => {
-    const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Você tem certeza?',
-      buttons: [
-        {
-          text: 'Sim',
-          role: 'confirm',
-        },
-        {
-          text: 'Não',
-          role: 'cancel',
-        },
-      ],
+  formatarMoeda(valor: string): string {
+    // Remove caracteres não numéricos
+    const valorNumerico = valor.replace(/\D/g, '');
+
+    // Converte para número
+    const numero = parseFloat(valorNumerico) / 100;
+
+    // Formatação final
+    const valorFormatado = numero.toLocaleString('pt-BR', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
     });
 
-    actionSheet.present();
-
-    const { role } = await actionSheet.onWillDismiss();
-
-    return role === 'confirm';
-  };  
-
+    if (valorFormatado === '0,00') {
+      return '';
+    }
+    return 'R$ ' + valorFormatado;
+  }
 
   next(classe: string) {
     const elementos = this.el.nativeElement.querySelectorAll(`.${classe}`);
@@ -110,6 +120,7 @@ export class CompleteComponent implements OnInit {
   checkValueInput(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
     let valor = input.value.trim();
+    console.log(valor);
 
     if (valor.length === 1 && valor.charAt(0) === '0') {
       input.value = '0,';
@@ -121,6 +132,17 @@ export class CompleteComponent implements OnInit {
   // Função para formatar a primeira letra como maiúscula
   formatarEntrada(elementoInput: HTMLInputElement | any) {
     let valor = elementoInput.value;
+
+    if (valor === '') {
+      this.inputNomeUpdateVazio = true;
+      this.inputNomeUpdateMin = false;
+    } else if (valor.length < 2) {
+      this.inputNomeUpdateMin = true;
+      this.inputNomeUpdateVazio = false;
+    } else {
+      this.inputNomeUpdateVazio = false;
+      this.inputNomeUpdateMin = false;
+    }
 
     if (valor.length > 0) {
       valor = valor.charAt(0).toUpperCase() + valor.slice(1);
@@ -147,19 +169,37 @@ export class CompleteComponent implements OnInit {
       return;
     }
   }
-
+  //adiciona o valor no array
   despesas(form: NgForm) {
     if (form.valid) {
       this.saidas.push({ nome: this.nome, valor: this.valor });
+      this.dados.push({ nome: this.nome, valor: this.valor });
+      console.log(this.saidas);
       this.inputCheck = true;
       this.nome = '';
       this.valor = '';
-      console.log(this.saidas);
     }
   }
 
-  update(id: number) {
-    console.log(id);
-    console.log(this.saidas[id]);
+  //Formata com a mesma mascara o input na parte de editar
+  formatarInputValor(id: number) {
+    this.saidas[id].valor = this.formatarMoeda(this.saidas[id].valor);
+
+    if (this.saidas[id].valor === '') {
+      this.inputValorUpdateVazio = true;
+    } else {
+      this.inputValorUpdateVazio = false;
+    }
+  }
+
+  //Atualizar o valor do input para anterior mesmo modificando o input
+  close(modal: any, id: number) {
+    modal.dismiss();
+    this.saidas[id] = { ...this.dados[id] };
+  }
+
+  confirmar(modal: any, id: number) {
+    modal.dismiss();
+    this.dados[id] = { ...this.saidas[id] };
   }
 }

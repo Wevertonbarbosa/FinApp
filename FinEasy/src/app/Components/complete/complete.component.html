@@ -41,9 +41,8 @@
 
         <div class="input-group mb-3">
           <span class="input-group-text border-0 border-2 border-bottom">Valor</span>
-          <input type="tel" mask="separator.2" thousandSeparator="." [(ngModel)]="valor" name="valor"
-            (keydown)="checkValueInput($event)" class="form-control border-0 border-2 border-bottom  w-75" required
-            placeholder="1.500,00">
+          <input #customInput type="tel" [(ngModel)]="valor" name="valor" (ngModelChange)="formatarInput()"
+            class="form-control border-0 border-2 border-bottom  w-75" required placeholder="1.500,00">
 
           <ion-row>
             <ion-col *ngIf="(d.controls['valor']?.invalid && d.controls['valor']?.touched)
@@ -60,7 +59,9 @@
         </div>
 
         <div class="d-grid gap-2 col-10 mx-auto position-relative">
-          <button [disabled]="(d.controls['valor'] && d.controls['valor'].invalid)" class="btn btn-primary p-2">
+          <button
+            [disabled]="(d.controls['valor'] && d.controls['valor'].invalid) || d.controls['valor'] && d.controls['nome'].invalid"
+            class="btn btn-primary p-2">
             <h3 class="m-0">Confirmar</h3>
           </button>
         </div>
@@ -72,7 +73,8 @@
       <ion-row>
         <ion-col>
           <div class="container-fluid d-flex align-items-center justify-content-end position-relative">
-            <button (click)="next('divSimulation3')" class="bg-transparent d-flex align-items-center">
+            <button (click)="next('divSimulation3')" class="bg-transparent d-flex align-items-center"
+              [disabled]="saidas.length === 0">
               <span class="pe-2">Próximo</span>
               <ion-icon class="fs-1" name="arrow-forward"></ion-icon>
             </button>
@@ -92,45 +94,61 @@
           <ion-row>
             <ion-col size="6" size-md="4" size-lg="2" class="d-flex flex-column fs-6">
               <ion-label>{{dados.nome}}</ion-label>
-              <ion-label>{{dados.valor}}</ion-label>
+              <span>{{dados.valor}}</span>
             </ion-col>
             <ion-col size="6" size-md="4" size-lg="2" class="d-flex justify-content-end gap-2 align-items-center fs-1">
 
               <ion-icon class="text-success" [id]="id" name="create-outline"></ion-icon>
               <!-- Modal de update -->
-              <ion-modal #modal [trigger]="id" [canDismiss]="canDismiss">
+              <ion-modal #modal [trigger]="id">
                 <ng-template>
                   <ion-header>
-                    <ion-toolbar>
+                    <ion-toolbar class="headerUpdate">
                       <ion-buttons slot="start">
-                        <ion-button (click)="modal.dismiss(null, 'cancel')">Close</ion-button>
-                      </ion-buttons>
-                      <ion-buttons slot="end">
-                        <ion-button (click)="modal.dismiss()">Confirmar</ion-button>
+                        <ion-icon class="fs-1 ps-2 text-light" name="arrow-back-outline"
+                          (click)="close(modal, id)"></ion-icon>
                       </ion-buttons>
                     </ion-toolbar>
                   </ion-header>
                   <ion-content class="ion-padding">
 
                     <div>
+
+                      <h2 class="text-center fw-bold">Editar</h2>
+
                       <div class="input-group mb-3">
                         <span class="input-group-text border-0 border-2 border-bottom">Nome</span>
                         <input #customInput name="nome" (input)="formatarEntrada(customInput)" label="Nome:"
                           placeholder="Aluguel" (keydown)="checkInput($event)" minlength="2" [(ngModel)]="dados.nome"
                           class="form-control border-0 border-2 border-bottom w-75" required>
+
+                        <span class="erro_txt" *ngIf="inputNomeUpdateVazio">
+                          Campo nome precisa ser preenchido
+                        </span>
+                        <span class="erro_txt" *ngIf="inputNomeUpdateMin">
+                          Nome precisa no mínimo de 2 caracteres!
+                        </span>
+
                       </div>
 
 
                       <div class="input-group mb-3">
 
                         <span class="input-group-text border-0 border-2 border-bottom">Valor</span>
-                        <input type="tel" mask="separator.2" thousandSeparator="." [(ngModel)]="dados.valor" name="valor"
-                          (keydown)="checkValueInput($event)" class="form-control border-0 border-2 border-bottom  w-75"
-                          required placeholder="1.500,00">
+                        <input type="tel" (input)="formatarInputValor(id)" [(ngModel)]="dados.valor" name="valor"
+                          class="form-control border-0 border-2 border-bottom  w-75" required placeholder="1.500,00">
 
+                        <span class="erro_txt" *ngIf="inputValorUpdateVazio">
+                          Campo valor precisa ser preenchido
+                        </span>
                       </div>
 
-
+                      <div class="d-grid gap-2 col-10 mx-auto position-relative">
+                        <button [disabled]="inputNomeUpdateVazio || inputNomeUpdateMin || inputValorUpdateVazio"
+                          (click)="confirmar(modal, id)" class="btn btn-primary p-2">
+                          <h3 class="m-0">Confirmar</h3>
+                        </button>
+                      </div>
 
                     </div>
 
